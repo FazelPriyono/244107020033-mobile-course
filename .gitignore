@@ -1,0 +1,13 @@
+# VS Code
+.vscode/
+
+# Flutter generated files
+**/.dart_tool/
+**/build/
+
+# IDE
+**/.idea/
+
+# Flutter
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
