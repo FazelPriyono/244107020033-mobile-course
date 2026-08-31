@@ -11,3 +11,6 @@ State menentukan kondisi atau data yang ditampilkan oleh aplikasi. Ketika state 
 ### 3. Mengapa commit kecil dengan pesan jelas bermanfaat bagi pekerjaan tim dan portfolio?
 
 Commit kecil dan memiliki pesan yang jelas membuat perubahan lebih mudah dilacak, dipahami, dan diperbaiki. Dalam kerja tim, hal ini memudahkan proses review dan kolaborasi. Untuk portfolio, riwayat commit yang rapi juga menunjukkan bahwa proses pengembangan dilakukan secara terstruktur dan profesional.
+
+### Perbedaan hot reload dan hot restart
+Hot Reload memperbarui perubahan kode pada aplikasi tanpa menghapus state yang sedang berjalan, sehingga proses pengembangan lebih cepat. Sedangkan Hot Restart menjalankan ulang aplikasi dari awal dan menghapus state yang sedang tersimpan.
