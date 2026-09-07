@@ -27,10 +27,10 @@ Perubahan Breakpoint: Memodifikasi constraints.maxWidth dari 700 ke 500 membuat 
 <img src ="screenshots\test landscape.png" width="500">
 
 Eksperimen Tema: Menguji pengubahan mode tema secara dinamis menggunakan themeMode: ThemeMode.system dan peralihan hardcode ke mode gelap.
-<img src ="screenshots\default dark mode.png" width="250>
+<img src ="screenshots\default dark mode.png" width="250">
 
 Penerapan Semantics: Mengimplementasikan screen reader accessibility menggunakan widget Semantics pada CupertinoSwitch dan membungkus kartu informasi untuk menggabungkan pembacaan judul dan nilai agar logis bagi penyandang tunanetra.
-<img src ="screenshots\semantic box.png" width="250>
+<img src ="screenshots\semantic box.png" width="250">
 
 # 3. Tugas Utama & Refactoring Challenge (Academic Overview)
 Mengembangkan halaman Academic Overview responsif dengan struktur header profil dan empat kartu indikator utama.
