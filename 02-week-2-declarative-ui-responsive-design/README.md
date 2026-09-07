@@ -1,4 +1,4 @@
-# week_2
+# WEEK_2
 
 ## Tujuan
 
@@ -12,19 +12,19 @@
 Pada tahap awal, dilakukan pengenalan tata letak dasar Flutter melalui beberapa eksperimen modifikasi parameter:
 
 1. Menghapus Expanded pada Row: Menghapus Expanded pada kolom nama menyebabkan teks berisiko mengalami overflow (menembus batas layar) jika karakternya terlalu panjang karena Row tidak memberikan batasan ruang maksimal secara default.
-<img src ="screenshots/overflow.png">
+<img src ="screenshots/overflow.png" width="250">
 
 2. Mengubah mainAxisSize: Mengubah MainAxisSize.min ke nilai bawaan (MainAxisSize.max) pada Column menyebabkan kartu profil memanjang secara vertikal hingga memenuhi seluruh tinggi layar, karena Column mencoba mengambil seluruh ruang yang tersedia.
-<img src ="screenshots\MainAxisSize.max.png">
+<img src ="screenshots\MainAxisSize.max.png" width="250">
 
 3. Menambah Baris Baru: Mengimplementasikan pola Row + Expanded untuk menambahkan baris informasi Email dengan tata letak yang konsisten.
-<img src ="screenshots\tambah baris email.png">
+<img src ="screenshots\tambah baris email.png" width="250">
 
 # 2. Eksperimen Layout & Aksesibilitas
 Mengembangkan rancangan dashboard dinamis dengan pengujian berikut:
 
 Perubahan Breakpoint: Memodifikasi constraints.maxWidth dari 700 ke 500 membuat aplikasi beralih ke tata letak dua kolom lebih cepat, bahkan pada layar ponsel dengan orientasi lanskap.
-<img src ="screenshots\test landscape.png">
+<img src ="screenshots\test landscape.png" width="250">
 
 Eksperimen Tema: Menguji pengubahan mode tema secara dinamis menggunakan themeMode: ThemeMode.system dan peralihan hardcode ke mode gelap.
 <img src ="screenshots\default dark mode.png">
