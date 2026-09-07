@@ -59,27 +59,27 @@ Audit Verifikasi: Implementasi AI lulus verifikasi; desain tetap aman di bawah 6
 # 6. Refleksi
 1. Apa perbedaan cara berpikir imperative dan declarative saat membangun UI?
 
-Imperative: Kita secara eksplisit memberikan instruksi bagaimana UI harus berubah langkah demi langkah (contoh: bttn.setColor(red), text.setText('Hello')). Kita berfokus pada manipulasi elemen secara manual setelah dirender.
+- Imperative: Kita secara eksplisit memberikan instruksi bagaimana UI harus berubah langkah demi langkah (contoh: bttn.setColor(red), text.setText('Hello')). Kita berfokus pada manipulasi elemen secara manual setelah dirender.
 
-Declarative: Kita mendeskripsikan seperti apa UI seharusnya terlihat pada "state" atau keadaan tertentu. UI bersifat statis; saat data/state berubah, framework (seperti Flutter) akan merender ulang keseluruhan tampilan secara otomatis sesuai definisi keadaan baru tersebut.
+- Declarative: Kita mendeskripsikan seperti apa UI seharusnya terlihat pada "state" atau keadaan tertentu. UI bersifat statis; saat data/state berubah, framework (seperti Flutter) akan merender ulang keseluruhan tampilan secara otomatis sesuai definisi keadaan baru tersebut.
 
 2. Kapan Expanded membantu dan kapan penggunaannya justru menghasilkan layout error?
 
-Membantu: Expanded sangat vital dalam Row atau Column untuk memaksa child widget mengambil sisa ruang kosong secara proporsional. Ini mencegah teks panjang mengalami overflow karena ruangnya terukur jelas, memaksa teks tersebut turun baris (wrap).
+- Membantu: Expanded sangat vital dalam Row atau Column untuk memaksa child widget mengambil sisa ruang kosong secara proporsional. Ini mencegah teks panjang mengalami overflow karena ruangnya terukur jelas, memaksa teks tersebut turun baris (wrap).
 
-Menghasilkan Error: Penggunaan Expanded memicu error layout (seperti unbounded constraints) jika diletakkan di dalam parent widget yang dapat di-scroll (seperti SingleChildScrollView atau ListView) tanpa batasan ukuran, karena area scroll mengasumsikan ruang tak terbatas (infinity), membuat Expanded kebingungan seberapa jauh ia harus merentang.
+- Menghasilkan Error: Penggunaan Expanded memicu error layout (seperti unbounded constraints) jika diletakkan di dalam parent widget yang dapat di-scroll (seperti SingleChildScrollView atau ListView) tanpa batasan ukuran, karena area scroll mengasumsikan ruang tak terbatas (infinity), membuat Expanded kebingungan seberapa jauh ia harus merentang.
 
 3. Bagaimana breakpoint dan theme memengaruhi pengalaman pengguna?
 
-Breakpoint: Mengamankan fungsionalitas dan estetika antarmuka di berbagai medium (ponsel vs. tablet/desktop). Pengguna tidak perlu memicingkan mata atau menggulir terlalu jauh karena informasi yang disajikan otomatis merestrukturisasi tata letaknya agar sesuai dengan layar fisik perangkat mereka.
+- Breakpoint: Mengamankan fungsionalitas dan estetika antarmuka di berbagai medium (ponsel vs. tablet/desktop). Pengguna tidak perlu memicingkan mata atau menggulir terlalu jauh karena informasi yang disajikan otomatis merestrukturisasi tata letaknya agar sesuai dengan layar fisik perangkat mereka.
 
-Theme: Mempengaruhi kenyamanan visual dan daya jangkau. Dukungan Dark Theme meminimalisir ketegangan mata di lingkungan minim cahaya, sementara penggunaan palet warna sistem dan tipografi dinamis (dynamic type scaling) membantu konsistensi dan menunjang aksesibilitas bagi pengguna dengan hambatan penglihatan.
+- Theme: Mempengaruhi kenyamanan visual dan daya jangkau. Dukungan Dark Theme meminimalisir ketegangan mata di lingkungan minim cahaya, sementara penggunaan palet warna sistem dan tipografi dinamis (dynamic type scaling) membantu konsistensi dan menunjang aksesibilitas bagi pengguna dengan hambatan penglihatan.
 
 4. Apa yang Anda verifikasi dari rekomendasi AI setelah tugas inti selesai?
 Saya melakukan proses audit manual atas keluaran AI untuk memastikan:
 
-Fungsi Responsif: Tata letak LayoutBuilder + Column yang disarankan benar-benar beralih menjadi satu kolom di layar di bawah 600px/700px dan tidak menyebabkan layar overflow di bagian bawah (bottom pixel overflow).
+- Fungsi Responsif: Tata letak LayoutBuilder + Column yang disarankan benar-benar beralih menjadi satu kolom di layar di bawah 600px/700px dan tidak menyebabkan layar overflow di bagian bawah (bottom pixel overflow).
 
-Keamanan Aksesibilitas: Kode AI diverifikasi tidak merusak navigasi TalkBack; perlunya tambahan widget Semantics terkonfirmasi.
+- Keamanan Aksesibilitas: Kode AI diverifikasi tidak merusak navigasi TalkBack; perlunya tambahan widget Semantics terkonfirmasi.
 
-Kelayakan Library: Memastikan widget yang digunakan Row, Expanded, dan SingleChildScrollView merupakan bawaan stabil dari Flutter, bebas dari dependensi paket pihak ketiga yang rawan deprecated.
+- Kelayakan Library: Memastikan widget yang digunakan Row, Expanded, dan SingleChildScrollView merupakan bawaan stabil dari Flutter, bebas dari dependensi paket pihak ketiga yang rawan deprecated.
