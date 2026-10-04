@@ -17,9 +17,6 @@ analysis_options.yaml
 pubspec.lock
 pubspec.yaml
 
-# Custom notes
-week4.md
-week5.md
 
 */*.gitignore
 */*/README.md
