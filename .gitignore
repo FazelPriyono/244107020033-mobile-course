@@ -1,0 +1,29 @@
+# Ignore unused flutter platform and metadata files that are not pushed
+android/
+ios/
+linux/
+macos/
+windows/
+web/
+
+# IDE and Metadata
+.vscode/
+.idea/
+.metadata
+*.iml
+analysis_options.yaml
+
+# Flutter/Dart
+pubspec.lock
+pubspec.yaml
+
+# Custom notes
+week4.md
+week5.md
+
+*/*.gitignore
+*/*/README.md
+*/*/test/
+*/test/
+
+*/*/*/.gitignore
