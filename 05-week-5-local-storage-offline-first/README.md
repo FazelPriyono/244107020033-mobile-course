@@ -311,72 +311,16 @@ final cachedPostsProvider =
 
 ## 📸 Hasil Output & Screenshot
 
-### 1. Halaman Utama — Daftar Catatan (Tab SQLite)
-
-![Halaman Catatan](screenshots/note-page.png)
-
-Halaman utama aplikasi menampilkan daftar catatan yang tersimpan di SQLite lokal melalui tab **"Catatan SQLite"**. Catatan diurutkan berdasarkan `updated_at` terbaru. AppBar menampilkan: ikon Wi-Fi (hijau = online, oranye = simulasi offline), ikon Sync dengan badge merah jumlah catatan `dirty`, dan ikon Settings.
-
----
-
-### 2. Menambah Catatan Baru
-
-![Tambah Catatan](screenshots/tambah-note.png)
-
-Dialog tambah catatan muncul saat tombol FAB **"Catatan Baru"** ditekan. Setelah disimpan, catatan langsung masuk ke SQLite lokal dengan status `dirty = true` dan badge merah pada tombol sync bertambah otomatis.
-
----
-
-### 3. Edit / Detail Catatan
-
-![Edit Catatan](screenshots/edit-note.png)
-
-Halaman detail catatan (`/note/:id`) membaca data langsung dari `NoteRepository` lokal berdasarkan ID — bukan dari state list. Pengguna dapat mengedit judul dan isi; setelah disimpan, status `dirty` di-set kembali ke `true`.
-
----
-
-### 4. Catatan Belum Tersinkron (Badge Dirty)
-
-![Belum Sinkron](screenshots/no-sinkron-note.png)
-
-Badge merah pada tombol sync menunjukkan **jumlah catatan yang belum dikirim ke server** (`dirty = 1`). Widget `NoteTile` juga menampilkan label **"Belum Tersinkron"** pada setiap baris catatan yang `dirty = true`.
-
----
-
-### 5. Setelah Sinkronisasi Berhasil
-
-![Setelah Sinkron](screenshots/sinkron-note.png)
-
-Setelah sync berhasil, `markAllSynced()` mengubah semua `dirty = 0`. Badge kembali ke **0**, label "Belum Tersinkron" menghilang, dan SnackBar hijau mengonfirmasi jumlah catatan yang disinkronkan.
-
----
-
-### 6. Mode Offline (Simulasi)
-
-![Mode Offline](screenshots/offline-mode.png)
-
-Ketika toggle simulasi offline diaktifkan, ikon Wi-Fi berubah oranye dan banner **"Simulasi Offline Aktif"** muncul di atas. Semua operasi SQLite tetap berfungsi penuh, namun tombol sync menolak dengan pesan peringatan — membuktikan prinsip *offline-first*.
-
----
-
-### 7. Pengaturan Tema Gelap
-
-![Pengaturan Dark Mode](screenshots/setting-dark-mode.png)
-
-Halaman Settings menampilkan toggle **dark mode** yang menggunakan `SharedPreferences`. Nilai preferensi ini persisten — tetap aktif meski aplikasi ditutup dan dibuka kembali.
-
----
-
-### 8. Hasil Flutter Analyze & Flutter Test
-
-![Test dan Analyze](screenshots/test%20&%20analyze.png)
-
-```
-Analyzing week5_offline_notes...
-No issues found! (ran in 3.2s)
-
-00:01 +5: All tests passed!
-```
+| Screenshot | Fitur / Keterangan |
+| :---: | :--- |
+| ![Halaman Catatan](screenshots/note-page.png) | **1. Halaman Utama — Daftar Catatan**<br>Halaman utama aplikasi menampilkan daftar catatan yang tersimpan di SQLite lokal melalui tab **"Catatan SQLite"**. Catatan diurutkan berdasarkan `updated_at` terbaru. AppBar menampilkan: ikon Wi-Fi (hijau = online, oranye = simulasi offline), ikon Sync dengan badge merah jumlah catatan `dirty`, dan ikon Settings. |
+| ![Tambah Catatan](screenshots/tambah-note.png) | **2. Menambah Catatan Baru**<br>Dialog tambah catatan muncul saat tombol FAB **"Catatan Baru"** ditekan. Setelah disimpan, catatan langsung masuk ke SQLite lokal dengan status `dirty = true` dan badge merah pada tombol sync bertambah otomatis. |
+| ![Edit Catatan](screenshots/edit-note.png) | **3. Edit / Detail Catatan**<br>Halaman detail catatan (`/note/:id`) membaca data langsung dari `NoteRepository` lokal berdasarkan ID — bukan dari state list. Pengguna dapat mengedit judul dan isi; setelah disimpan, status `dirty` di-set kembali ke `true`. |
+| ![Belum Sinkron](screenshots/no-sinkron-note.png) | **4. Catatan Belum Tersinkron (Badge Dirty)**<br>Badge merah pada tombol sync menunjukkan **jumlah catatan yang belum dikirim ke server** (`dirty = 1`). Widget `NoteTile` juga menampilkan label **"Belum Tersinkron"** pada setiap baris catatan yang `dirty = true`. |
+| ![Setelah Sinkron](screenshots/sinkron-note.png) | **5. Setelah Sinkronisasi Berhasil**<br>Setelah sync berhasil, `markAllSynced()` mengubah semua `dirty = 0`. Badge kembali ke **0**, label "Belum Tersinkron" menghilang, dan SnackBar hijau mengonfirmasi jumlah catatan yang disinkronkan. |
+| ![Mode Offline](screenshots/offline-mode.png) | **6. Mode Offline (Simulasi)**<br>Ketika toggle simulasi offline diaktifkan, ikon Wi-Fi berubah oranye dan banner **"Simulasi Offline Aktif"** muncul di atas. Semua operasi SQLite tetap berfungsi penuh, namun tombol sync menolak dengan pesan peringatan — membuktikan prinsip *offline-first*. |
+| ![Pengaturan Dark Mode](screenshots/setting-dark-mode.png) | **7. Pengaturan Tema Gelap**<br>Halaman Settings menampilkan toggle **dark mode** yang menggunakan `SharedPreferences`. Nilai preferensi ini persisten — tetap aktif meski aplikasi ditutup dan dibuka kembali. |
+| ![Test dan Analyze](screenshots/test%20&%20analyze.png) | **8. Hasil Flutter Analyze & Flutter Test**<br><code>Analyzing week5_offline_notes...<br>No issues found! (ran in 3.2s)<br><br>00:01 +5: All tests passed!</code> |
 
 `flutter analyze` tanpa issue dan semua 5 test lulus tanpa error.
 
