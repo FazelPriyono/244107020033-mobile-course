@@ -52,11 +52,7 @@ flutter test
 flutter analyze
 ```
 
-Hasil eksekusi `flutter test` dan `flutter analyze`:
-
-![Hasil Test dan Analyze](screenshots/hasil-test-analyze.png)
-
-Semua 10 unit test (parsing rute, penanganan payload, logika sesi token, token refresh, dan UI announcement) lulus tanpa kendala, dan `flutter analyze` bersih (No issues found).
+Semua 10 unit test (parsing rute, penanganan payload, logika sesi token, token refresh, dan UI announcement) lulus tanpa kendala, dan `flutter analyze` bersih (No issues found) — bukti tangkapan layar terlampir pada tabel bagian 6.
 
 ---
 
@@ -74,36 +70,14 @@ Pengujian notifikasi dilakukan pada perangkat fisik dengan skenario pengiriman m
 
 ## 6. Bukti Tangkapan Layar (Screenshots)
 
-### Autentikasi & FCM Token
-Tampilan halaman login dan halaman utama setelah autentikasi berhasil, menampilkan FCM token untuk pengujian:
-
-![Halaman Login dan Token](screenshots/login.jpeg)
-
----
-
-### Pengujian 3 State Notifikasi
-
-#### State Foreground
-Banner notifikasi lokal muncul saat aplikasi sedang aktif:
-
-![State Foreground](screenshots/foreground.jpeg)
-
-#### State Background
-Notifikasi sistem muncul pada status bar saat aplikasi berada di background:
-
-![State Background](screenshots/background.jpeg)
-
-#### State Terminated
-Notifikasi sistem muncul saat aplikasi dalam kondisi mati / ditutup total:
-
-![State Terminated](screenshots/terminated.jpeg)
-
----
-
-### Hasil Navigasi Deep Link Notifikasi
-Tampilan halaman detail pengumuman yang berhasil dibuka setelah banner notifikasi diklik, memuat ID pengumuman, judul, dan isi pesan lengkap:
-
-![Detail Pengumuman](screenshots/detail-pengumuman.jpeg)
+| Screenshot | Fitur / Keterangan |
+| :---: | :--- |
+| ![Halaman Login dan Token](screenshots/login.jpeg) | **1. Autentikasi & FCM Token**<br>Tampilan antarmuka login dan halaman utama setelah autentikasi berhasil, menampilkan FCM token unik perangkat untuk pengujian push notification. |
+| ![State Foreground](screenshots/foreground.jpeg) | **2. Notifikasi State Foreground**<br>Banner notifikasi lokal muncul di bagian atas layar saat aplikasi sedang aktif terbuka menggunakan `flutter_local_notifications`. |
+| ![State Background](screenshots/background.jpeg) | **3. Notifikasi State Background**<br>Banner notifikasi sistem muncul pada status bar ketika aplikasi diminimalkan (ditekan tombol Home) saat pesan FCM diterima. |
+| ![State Terminated](screenshots/terminated.jpeg) | **4. Notifikasi State Terminated**<br>Notifikasi sistem muncul pada perangkat saat aplikasi dalam kondisi ditutup total (swipe-close / terminated). |
+| ![Detail Pengumuman](screenshots/detail-pengumuman.jpeg) | **5. Hasil Navigasi Deep Link Notifikasi**<br>Halaman detail pengumuman (`/pengumuman/:id`) yang langsung terbuka setelah banner notifikasi diklik, menampilkan ID pengumuman, judul, dan isi pesan notifikasi lengkap. |
+| ![Hasil Test dan Analyze](screenshots/hasil-test-analyze.png) | **6. Hasil Flutter Analyze & Flutter Test**<br>Pengujian statis `flutter analyze` bersih tanpa issue dan seluruh 10 unit test lulus (`All tests passed!`). |
 
 ---
 
