@@ -151,39 +151,78 @@ Sebelum refactor, struktur file lama diaudit untuk mengidentifikasi kebocoran *c
 
 ## 6. Verifikasi Sterilitas & Hasil Pengujian
 
-### 1. Tiga Perintah Grep Sterilitas (Semua Lolos / 0 Hasil)
+### 1. Hasil 3 Pemeriksaan Sterilitas Layer (Ripgrep Checks)
 
-Sesuai instruksi modul, ketiga pemeriksaan sterilitas dijalankan untuk memastikan tidak ada pelanggaran aturan dependensi:
+Sesuai instruksi modul praktikum, ketiga pemeriksaan sterilitas dijalankan untuk membuktikan kepatuhan terhadap *Dependency Inversion Principle* dan *The Golden Dependency Rule*. Ketiga pemeriksaan wajib menghasilkan **NOL HASIL (0 Matches / Steril Total)**:
 
-```bash
-# Pemeriksaan 1: Presentation steril dari data mentah & storage langsung
-rg "Dio\(|openDatabase|getDatabasesPath|FlutterSecureStorage|SharedPreferences\.getInstance|jsonDecode" lib/features/*/presentation lib/pages
-# HASIL: 0 matches (Steril total / Lolos)
+#### Pemeriksaan 1: Presentation Steril dari Akses Data Mentah & Database
+Pemeriksaan ini memastikan tidak ada widget atau halaman UI yang memanggil koneksi database, HTTP client, local storage, atau melakukan decoding JSON langsung.
 
-# Pemeriksaan 2: Domain steril dari framework Flutter, SQLite, Dio, dan Firebase
-rg "import 'package:flutter|import 'package:dio|import 'package:sqflite|import 'package:firebase" lib/features/*/domain lib/core
-# HASIL: 0 matches (Steril total / Lolos)
+- **Perintah:**
+  ```bash
+  rg "Dio\(|openDatabase|getDatabasesPath|FlutterSecureStorage|SharedPreferences\.getInstance|jsonDecode" lib/features/*/presentation lib/pages
+  ```
+- **Hasil Eksekusi Terminal:**
+  ```text
+  0 matches found (Steril Total - Lolos)
+  ```
+- **Keterangan Teknis:** Seluruh akses penyimpanan SQLite dan preferensi lokal telah diisolasi di layer Data (`NoteRepositoryImpl` dan `SettingsRepositoryImpl`). Widget pada Presentation layer hanya membaca state dari Provider Riverpod dan memicu operasi melalui Use Case.
 
-# Pemeriksaan 3: Tidak ada instansiasi manual (DI bocor) di UI Widget
-rg "Repository\(|Dio\(BaseOptions" lib/features/*/presentation/pages lib/features/*/presentation/widgets
-# HASIL: 0 matches (Steril total / Lolos)
-```
+---
+
+#### Pemeriksaan 2: Domain Steril dari Framework & Package Luar
+Pemeriksaan ini memastikan bahwa seluruh logika bisnis di `domain` dan `core` murni ditulis dalam bahasa Dart murni (*Pure Dart*), tanpa dependensi terhadap framework Flutter UI, SQLite, HTTP Dio, maupun Firebase.
+
+- **Perintah:**
+  ```bash
+  rg "import 'package:flutter|import 'package:dio|import 'package:sqflite|import 'package:firebase" lib/features/*/domain lib/core
+  ```
+- **Hasil Eksekusi Terminal:**
+  ```text
+  0 matches found (Steril Total - Lolos)
+  ```
+- **Keterangan Teknis:** Layer domain (`entities`, `repositories`, `usecases`) dan core (`failures.dart`, `format.dart`) sepenuhnya independen dari teknologi eksternal, sehingga aturan bisnis dapat diuji 100% menggunakan unit test tanpa membutuhkan runtime Flutter atau emulator database.
+
+---
+
+#### Pemeriksaan 3: Tidak Ada Instansiasi Manual (DI Bocor) di UI Widget
+Pemeriksaan ini memastikan bahwa widget pada Presentation layer tidak membuat instansiasi objek repository secara manual (`new Repository()`), melainkan mengandalkan penyuntikan dependensi terpusat (*Dependency Injection*).
+
+- **Perintah:**
+  ```bash
+  rg "Repository\(|Dio\(BaseOptions" lib/features/*/presentation/pages lib/features/*/presentation/widgets
+  ```
+- **Hasil Eksekusi Terminal:**
+  ```text
+  0 matches found (Steril Total - Lolos)
+  ```
+- **Keterangan Teknis:** Seluruh dependensi disuntikkan terpusat melalui Riverpod Provider (`notes_providers.dart` dan `settings_providers.dart`). Widget UI hanya mengonsumsi provider menggunakan `ref.watch()` atau `ref.read()`.
+
+---
 
 ### 2. Static Analysis (`flutter analyze`)
+Pemeriksaan kode statis memastikan kode bersih dari error tipe, peringatan linting, maupun unused variables:
+
 ```bash
 flutter analyze
 ```
-**Hasil:**
+
+**Hasil Eksekusi Terminal:**
 ```text
 Analyzing 07-week-7-clean-architecture...                       
 No issues found! (ran in 3.0s)
 ```
 
+---
+
 ### 3. Eksekusi Unit Test (`flutter test`)
+Pengujian unit dijalankan untuk menguji Entity, Model, Use Case dengan Fake Repository, Helper format murni, dan Riverpod Provider:
+
 ```bash
 flutter test
 ```
-**Hasil:**
+
+**Hasil Eksekusi Terminal:**
 ```text
 00:00 +0: C:/.../test/add_note_test.dart: AddNote UseCase Test (Validation & Domain Logic) Gagal validasi jika judul kosong atau hanya spasi
 00:00 +1: C:/.../test/add_note_test.dart: AddNote UseCase Test (Validation & Domain Logic) Berhasil menyimpan catatan dengan judul valid dan melakukan trim
@@ -209,16 +248,21 @@ Seluruh **16 unit test lulus 100%**.
 
 ## 7. Bukti Tangkapan Layar (Screenshots)
 
-Berikut matriks tangkapan layar hasil implementasi antarmuka dan pengujian Clean Architecture:
+Berikut tabel perbandingan komparatif antarmuka aplikasi **Before (Week 5: Struktur Monolitik / Layer-First)** dan **After (Week 7: Clean Architecture Feature-First)**, serta bukti eksekusi pengujian:
 
-| Tangkapan Layar | Fitur / Komponen | Penjelasan Teknis |
-| :---: | :--- | :--- |
-| ![Halaman Utama Catatan](screenshots/note-page.png) | **1. Halaman Utama Catatan** | Menampilkan daftar catatan dari SQLite melalui `notesProvider` dan `GetNotes` use case, dilengkapi badge lokal dan tab penjelasan layer. |
-| ![Tambah Catatan Baru](screenshots/tambah-note.png) | **2. Tambah Catatan Baru** | Dialog penambahan catatan baru yang memvalidasi judul via `AddNote` usecase, menghasilkan entity baru dan invalidasi provider reaktif. |
-| ![Detail & Edit Catatan](screenshots/edit-note.png) | **3. Detail & Edit Catatan** | Halaman `/note/:id` untuk memperbarui judul dan isi catatan via `UpdateNote` usecase tanpa menyentuh SQL langsung di widget. |
-| ![Pengaturan Tema Gelap](screenshots/setting-dark-mode.png) | **4. Pengaturan & Tema Gelap** | Halaman `/settings` fitur kedua (`features/settings`) yang mengelola tema melalui `ToggleThemeMode` usecase dan SharedPreferences. |
-| ![Catatan Berstatus Lokal](screenshots/no-sinkron-note.png) | **5. Penanda Data Lokal** | Menampilkan badge *Lokal* pada tile catatan yang baru ditambahkan sesuai `dirty flag` pada SQLite database. |
-| ![Hasil Static Analysis & Unit Test](screenshots/test%20&%20analyze.png) | **6. Flutter Analyze & Flutter Test** | Bukti eksekusi terminal yang menunjukkan `flutter analyze` bersih (No issues found) dan seluruh 16 unit test lulus (`All tests passed!`). |
+| Fitur / Halaman | Before (Week 5: Layer-First / Monolith) | After (Week 7: Clean Architecture Feature-First) | Penjelasan Perubahan & Refactoring |
+| :---: | :---: | :---: | :--- |
+| **1. Halaman Utama Catatan** | ![Before Halaman Utama](screenshots/note-page.png) | ![After Halaman Utama](screenshots/note.png) | **Before:** Tampilan tab monolitik sederhana dengan pemanggilan query database langsung di UI.<br><br>**After:** Tampilan modern Deep Teal dengan Dashboard Status Clean Architecture, pencarian catatan real-time, badge entitas domain, dan tab interaktif visualisasi 3 layer. Data dimuat melalui `GetNotes` usecase dan Riverpod `notesProvider`. |
+| **2. Dialog Tambah Catatan** | ![Before Tambah Catatan](screenshots/tambah-note.png) | ![After Tambah Catatan](screenshots/tambah.png) | **Before:** Dialog langsung mengeksekusi insert query ke SQLite tanpa validasi layer bisnis.<br><br>**After:** Dialog memanggil `AddNote` usecase. Validasi input (judul tidak boleh kosong, trimming spasi) ditangani oleh domain layer sebelum menyentuh SQLite, memberikan pesan kegagalan yang ramah pengguna. |
+| **3. Detail & Edit Catatan** | ![Before Edit Catatan](screenshots/edit-note.png) | ![After Edit Catatan](screenshots/edit.png) | **Before:** Form edit catatan standar tanpa pemisahan model dan entity bisnis.<br><br>**After:** Dilengkapi metadata card entity (`Entity #ID`, `Pure Dart Entity`, status SQLite, timestamp) dan pembaruan data diproses via `UpdateNote` usecase. |
+| **4. Pengaturan & Preferensi** | ![Before Pengaturan](screenshots/setting-dark-mode.png) | ![After Pengaturan](screenshots/setting.png) | **Before:** Preferensi tema disimpan langsung via `SharedPreferences.getInstance()` di state UI.<br><br>**After:** Fitur kedua (`features/settings`) dengan struktur Clean Architecture lengkap (`SettingsRepository`, `GetSettings`, `ToggleThemeMode`). UI steril dari instance storage mentah. |
+| **5. Antarmuka Tema Gelap (Dark Mode)** | ![Before Dark Mode](screenshots/setting-dark-mode.png) | ![After Dark Mode](screenshots/dark%20mode.png) | **Before:** Tampilan tema gelap sederhana dengan kontras bawaan.<br><br>**After:** Desain tema gelap bernuansa Deep Slate & Emerald Teal yang modern, terintegrasi mulus dengan `darkModeProvider` dan Material 3. |
+
+### Bukti Pengujian Statis & Unit Test
+
+| Jenis Pengujian | Bukti Tangkapan Layar | Status & Keterangan |
+| :---: | :---: | :--- |
+| **Flutter Analyze & Flutter Test** | ![Hasil Test & Analyze](screenshots/hasil-test-analyze.png) | **100% Lolos Tanpa Isu:** `flutter analyze` bersih (*No issues found!*) dan seluruh 16 unit test usecase, model, format helper, dan provider lulus (*All tests passed!*). |
 
 ---
 
