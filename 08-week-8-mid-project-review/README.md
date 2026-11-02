@@ -1,7 +1,6 @@
 # Week 8 — Mid Project Review & Code Review
 
-**Nama:** Fazel Priyono (244107020033)  
-**Project:** 07-week-7-clean-architecture (Week 7 — Clean Architecture)
+**Project:** 07-week-7-clean-architecture (Clean Architecture)
 
 ---
 
@@ -16,6 +15,11 @@
 - 3 perintah grep sterilitas: 0 matches (steril).
 - Review AI: 2 diterima (trim + test), 1 ditolak (use case pass-through), 2 ditunda.
 - Batasan: PR belum dibuka otomatis karena `gh` CLI tidak tersedia; semua branch sudah dipush dan siap dibuat PR via web GitHub.
+
+![CI Green](screenshots/ci-green.png)  
+![PR Review](screenshots/pr-2-review.png)  
+![PR Merged](screenshots/pr-2-merged.png)  
+![Hasil Analyze & Test](screenshots/hasil-analyze-test-week7.png)  
 
 ---
 
