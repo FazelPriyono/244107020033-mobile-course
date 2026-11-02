@@ -1,0 +1,28 @@
+## git log --oneline -15
+27ae9dd chore(ci): tambah workflow analyze, format, dan test
+27ae786 fix(notes): trim judul dan isi pada UpdateNote + test
+4e551c5 chore(repo): track pubspec, analysis_options, dan test Week 7
+5553659 docs(week-7): rapikan laporan verifikasi sterilitas
+932a352 style(week-7): terapkan dart format pada lib dan test
+edf1e8a chore: remove week7.md
+f7169b4 docs(week-7): update README with detailed sterility checks and before-after comparison table
+9d12aa6 feat(week-7): implement Clean Architecture feature-first, unit tests, and comprehensive report
+78ea655 docs: format output screenshots as a table
+bb0906d feat: add week 6 authentication security and fcm
+8a31006 chore: cleaning ignore list
+3721e0c chore: ignore unused boilerplate and generated files across all weeks
+476d42e chore: untrack desktop.ini and ignore it
+3a24101 chore: remove redundantly copied directories
+a53dc70 docs: format output screenshots as a table in README.md
+
+## git branch -a
+  chore/1-track-project-files
+  chore/3-ci
+  develop
+* docs/4-week-8-report
+  fix/2-update-note-trim
+  main
+  remotes/origin/main
+
+## git status --short
+?? 08-week-8-mid-project-review/

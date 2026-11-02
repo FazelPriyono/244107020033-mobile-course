@@ -1,0 +1,35 @@
+# Verifikasi Sterilitas Layer — Week 7 Clean Architecture
+
+Tanggal: 2 November 2026
+Catatan: `lib/pages` tidak ada pada struktur feature-first Week 7,
+sehingga pemeriksaan 1 dijalankan pada `lib/features/*/presentation` saja.
+
+## Pemeriksaan 1 — Presentation steril dari akses data mentah
+
+```bash
+$ rg "Dio\\(|openDatabase|getDatabasesPath|FlutterSecureStorage|SharedPreferences\\.getInstance|jsonDecode" lib/features/*/presentation
+```
+
+```text
+0 matches (exit=1) — STERIL
+```
+
+## Pemeriksaan 2 — Domain steril dari framework dan package luar
+
+```bash
+$ rg "import 'package:flutter|import 'package:dio|import 'package:sqflite|import 'package:firebase" lib/features/*/domain lib/core
+```
+
+```text
+0 matches (exit=1) — STERIL
+```
+
+## Pemeriksaan 3 — Tidak ada instansiasi manual di presentation
+
+```bash
+$ rg "Repository\\(|Dio\\(BaseOptions" lib/features/*/presentation/pages lib/features/*/presentation/widgets
+```
+
+```text
+0 matches (exit=1) — STERIL
+```
