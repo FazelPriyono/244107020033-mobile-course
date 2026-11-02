@@ -24,3 +24,11 @@ pubspec.yaml
 */test/
 
 */*/*/.gitignore
+
+# --- Week 7 portfolio: keep project config, lockfile, dan test tracked ---
+!07-week-7-clean-architecture/pubspec.yaml
+!07-week-7-clean-architecture/pubspec.lock
+!07-week-7-clean-architecture/analysis_options.yaml
+!07-week-7-clean-architecture/.gitignore
+!07-week-7-clean-architecture/test/
+!07-week-7-clean-architecture/test/**
