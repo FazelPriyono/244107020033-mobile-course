@@ -18,7 +18,10 @@ class FakeSettingsRepository implements SettingsRepository {
       );
     }
     return (
-      settings: AppSettings(isDarkMode: currentDark, lastOpenedAt: DateTime(2026, 10, 12)),
+      settings: AppSettings(
+        isDarkMode: currentDark,
+        lastOpenedAt: DateTime(2026, 10, 12),
+      ),
       failure: null,
     );
   }
@@ -26,7 +29,10 @@ class FakeSettingsRepository implements SettingsRepository {
   @override
   Future<({bool success, Failure? failure})> setDarkMode(bool isDark) async {
     if (shouldFail) {
-      return (success: false, failure: const LocalFailure('Simulasi gagal set dark mode'));
+      return (
+        success: false,
+        failure: const LocalFailure('Simulasi gagal set dark mode'),
+      );
     }
     currentDark = isDark;
     return (success: true, failure: null);
@@ -65,13 +71,16 @@ void main() {
       expect(repo.currentDark, isFalse);
     });
 
-    test('ToggleThemeMode mempertahankan mode lama saat repository gagal', () async {
-      final repo = FakeSettingsRepository()..shouldFail = true;
-      final useCase = ToggleThemeMode(repo);
+    test(
+      'ToggleThemeMode mempertahankan mode lama saat repository gagal',
+      () async {
+        final repo = FakeSettingsRepository()..shouldFail = true;
+        final useCase = ToggleThemeMode(repo);
 
-      final result = await useCase.call(false);
-      expect(result.failure, isA<LocalFailure>());
-      expect(result.isDark, isFalse);
-    });
+        final result = await useCase.call(false);
+        expect(result.failure, isA<LocalFailure>());
+        expect(result.isDark, isFalse);
+      },
+    );
   });
 }

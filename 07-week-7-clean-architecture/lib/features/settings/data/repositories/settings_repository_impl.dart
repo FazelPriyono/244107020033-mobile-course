@@ -1,11 +1,12 @@
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../../../core/failures.dart';
 import '../../domain/entities/app_settings.dart';
 import '../../domain/repositories/settings_repository.dart';
 
 class SettingsRepositoryImpl implements SettingsRepository {
   SettingsRepositoryImpl({Future<SharedPreferences> Function()? getPrefs})
-      : _getPrefs = getPrefs ?? SharedPreferences.getInstance;
+    : _getPrefs = getPrefs ?? SharedPreferences.getInstance;
 
   final Future<SharedPreferences> Function() _getPrefs;
   static const _darkModeKey = 'dark_mode';

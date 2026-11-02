@@ -24,22 +24,28 @@ class FakeAddNoteRepository implements NoteRepository {
   }
 
   @override
-  Future<({List<Note> notes, Failure? failure})> fetchNotes() => throw UnimplementedError();
+  Future<({List<Note> notes, Failure? failure})> fetchNotes() =>
+      throw UnimplementedError();
 
   @override
-  Future<({Note? note, Failure? failure})> getNoteById(int id) => throw UnimplementedError();
+  Future<({Note? note, Failure? failure})> getNoteById(int id) =>
+      throw UnimplementedError();
 
   @override
-  Future<({bool success, Failure? failure})> updateNote(Note note) => throw UnimplementedError();
+  Future<({bool success, Failure? failure})> updateNote(Note note) =>
+      throw UnimplementedError();
 
   @override
-  Future<({bool success, Failure? failure})> deleteNote(int id) => throw UnimplementedError();
+  Future<({bool success, Failure? failure})> deleteNote(int id) =>
+      throw UnimplementedError();
 
   @override
-  Future<({int count, Failure? failure})> countDirty() => throw UnimplementedError();
+  Future<({int count, Failure? failure})> countDirty() =>
+      throw UnimplementedError();
 
   @override
-  Future<({bool success, Failure? failure})> markAllSynced() => throw UnimplementedError();
+  Future<({bool success, Failure? failure})> markAllSynced() =>
+      throw UnimplementedError();
 }
 
 void main() {
@@ -58,20 +64,23 @@ void main() {
       expect(repo.savedNote, isNull);
     });
 
-    test('Berhasil menyimpan catatan dengan judul valid dan melakukan trim', () async {
-      final repo = FakeAddNoteRepository();
-      final useCase = AddNote(repo);
+    test(
+      'Berhasil menyimpan catatan dengan judul valid dan melakukan trim',
+      () async {
+        final repo = FakeAddNoteRepository();
+        final useCase = AddNote(repo);
 
-      final result = await useCase.call(
-        title: ' Belajar Clean Architecture ',
-        body: ' Separation of concerns ',
-      );
+        final result = await useCase.call(
+          title: ' Belajar Clean Architecture ',
+          body: ' Separation of concerns ',
+        );
 
-      expect(result.failure, isNull);
-      expect(result.note, isNotNull);
-      expect(result.note!.title, 'Belajar Clean Architecture');
-      expect(result.note!.body, 'Separation of concerns');
-      expect(repo.savedNote?.title, 'Belajar Clean Architecture');
-    });
+        expect(result.failure, isNull);
+        expect(result.note, isNotNull);
+        expect(result.note!.title, 'Belajar Clean Architecture');
+        expect(result.note!.body, 'Separation of concerns');
+        expect(repo.savedNote?.title, 'Belajar Clean Architecture');
+      },
+    );
   });
 }

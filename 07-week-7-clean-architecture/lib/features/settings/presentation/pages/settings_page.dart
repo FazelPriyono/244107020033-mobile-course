@@ -14,9 +14,7 @@ class SettingsPage extends ConsumerWidget {
     final isDark = darkModeAsync.value ?? false;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pengaturan & Preferensi'),
-      ),
+      appBar: AppBar(title: const Text('Pengaturan & Preferensi')),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -25,9 +23,14 @@ class SettingsPage extends ConsumerWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: SwitchListTile(
-                title: const Text('Tema Gelap (Dark Mode)', style: TextStyle(fontWeight: FontWeight.bold)),
+                title: const Text(
+                  'Tema Gelap (Dark Mode)',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 subtitle: Text(
-                  isDark ? 'Mode gelap aktif (Tema Deep Slate)' : 'Mode terang aktif (Tema Emerald Teal)',
+                  isDark
+                      ? 'Mode gelap aktif (Tema Deep Slate)'
+                      : 'Mode terang aktif (Tema Emerald Teal)',
                   style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
                 ),
                 secondary: Container(
@@ -61,7 +64,10 @@ class SettingsPage extends ConsumerWidget {
                 ),
                 child: const Icon(Icons.history_rounded, color: Colors.blue),
               ),
-              title: const Text('Terakhir Aplikasi Dibuka', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+              title: const Text(
+                'Terakhir Aplikasi Dibuka',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              ),
               subtitle: settingsAsync.when(
                 data: (settings) => Text(
                   settings.lastOpenedAt != null
@@ -91,7 +97,10 @@ class SettingsPage extends ConsumerWidget {
                           color: const Color(0xFF0F766E).withAlpha(25),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: const Icon(Icons.verified_user_outlined, color: Color(0xFF0F766E)),
+                        child: const Icon(
+                          Icons.verified_user_outlined,
+                          color: Color(0xFF0F766E),
+                        ),
                       ),
                       const SizedBox(width: 12),
                       const Expanded(
@@ -100,11 +109,17 @@ class SettingsPage extends ConsumerWidget {
                           children: [
                             Text(
                               'Fitur Pengaturan (Clean Feature)',
-                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
                             ),
                             Text(
                               'Feature-First: features/settings/',
-                              style: TextStyle(fontSize: 11, color: Colors.grey),
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.grey,
+                              ),
                             ),
                           ],
                         ),
@@ -112,10 +127,22 @@ class SettingsPage extends ConsumerWidget {
                     ],
                   ),
                   const Divider(height: 24),
-                  _buildArchItem('Domain Layer', 'Entity AppSettings & UseCase ToggleThemeMode, GetSettings (Pure Dart).'),
-                  _buildArchItem('Data Layer', 'SettingsRepositoryImpl membungkus akses preferensi lokal.'),
-                  _buildArchItem('Presentation Layer', 'DarkModeNotifier disuntikkan via Riverpod Provider.'),
-                  _buildArchItem('Status Sterilitas', 'UI steril dari akses penyimpanan lokal langsung (100% Lolos).'),
+                  _buildArchItem(
+                    'Domain Layer',
+                    'Entity AppSettings & UseCase ToggleThemeMode, GetSettings (Pure Dart).',
+                  ),
+                  _buildArchItem(
+                    'Data Layer',
+                    'SettingsRepositoryImpl membungkus akses preferensi lokal.',
+                  ),
+                  _buildArchItem(
+                    'Presentation Layer',
+                    'DarkModeNotifier disuntikkan via Riverpod Provider.',
+                  ),
+                  _buildArchItem(
+                    'Status Sterilitas',
+                    'UI steril dari akses penyimpanan lokal langsung (100% Lolos).',
+                  ),
                 ],
               ),
             ),
@@ -131,14 +158,21 @@ class SettingsPage extends ConsumerWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(Icons.check_circle_rounded, size: 16, color: Color(0xFF0F766E)),
+          const Icon(
+            Icons.check_circle_rounded,
+            size: 16,
+            color: Color(0xFF0F766E),
+          ),
           const SizedBox(width: 8),
           Expanded(
             child: RichText(
               text: TextSpan(
                 style: const TextStyle(color: Colors.black87, fontSize: 12),
                 children: [
-                  TextSpan(text: '$label: ', style: const TextStyle(fontWeight: FontWeight.bold)),
+                  TextSpan(
+                    text: '$label: ',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   TextSpan(text: value),
                 ],
               ),

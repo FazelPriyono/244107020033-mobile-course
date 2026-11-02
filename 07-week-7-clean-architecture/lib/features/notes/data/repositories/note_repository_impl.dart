@@ -1,4 +1,5 @@
 import 'package:sqflite/sqflite.dart';
+
 import '../../../../core/failures.dart';
 import '../../domain/entities/note.dart';
 import '../../domain/repositories/note_repository.dart';
@@ -35,7 +36,10 @@ class NoteRepositoryImpl implements NoteRepository {
         limit: 1,
       );
       if (rows.isEmpty) {
-        return (note: null, failure: const LocalFailure('Catatan tidak ditemukan'));
+        return (
+          note: null,
+          failure: const LocalFailure('Catatan tidak ditemukan'),
+        );
       }
       return (note: NoteModel.fromMap(rows.first).toEntity(), failure: null);
     } catch (e) {
@@ -69,10 +73,7 @@ class NoteRepositoryImpl implements NoteRepository {
         failure: null,
       );
     } catch (e) {
-      return (
-        note: null,
-        failure: LocalFailure('Gagal menyimpan catatan: $e'),
-      );
+      return (note: null, failure: LocalFailure('Gagal menyimpan catatan: $e'));
     }
   }
 

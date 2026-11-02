@@ -9,21 +9,27 @@ void main() {
       expect(formatted, '12/10/2026 14:05');
     });
 
-    test('parseRouteId mengurai string angka dan menangani null/kosong/invalid', () {
-      expect(parseRouteId('42'), 42);
-      expect(parseRouteId(' 100 '), 100);
-      expect(parseRouteId(''), 0);
-      expect(parseRouteId(null), 0);
-      expect(parseRouteId('abc'), 0);
-    });
+    test(
+      'parseRouteId mengurai string angka dan menangani null/kosong/invalid',
+      () {
+        expect(parseRouteId('42'), 42);
+        expect(parseRouteId(' 100 '), 100);
+        expect(parseRouteId(''), 0);
+        expect(parseRouteId(null), 0);
+        expect(parseRouteId('abc'), 0);
+      },
+    );
 
-    test('formatNoteSnippet memotong teks panjang dan membersihkan newline', () {
-      const multiline = 'Baris satu\nBaris dua\nBaris tiga';
-      final snippet = formatNoteSnippet(body: multiline, maxLength: 20);
-      expect(snippet.contains('\n'), isFalse);
-      expect(snippet, 'Baris satu Baris dua...');
+    test(
+      'formatNoteSnippet memotong teks panjang dan membersihkan newline',
+      () {
+        const multiline = 'Baris satu\nBaris dua\nBaris tiga';
+        final snippet = formatNoteSnippet(body: multiline, maxLength: 20);
+        expect(snippet.contains('\n'), isFalse);
+        expect(snippet, 'Baris satu Baris dua...');
 
-      expect(formatNoteSnippet(body: ''), 'Tidak ada isi tambahan');
-    });
+        expect(formatNoteSnippet(body: ''), 'Tidak ada isi tambahan');
+      },
+    );
   });
 }

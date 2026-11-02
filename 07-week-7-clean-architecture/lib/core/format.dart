@@ -15,10 +15,7 @@ int parseRouteId(String? idStr) {
   return int.tryParse(idStr.trim()) ?? 0;
 }
 
-String formatNoteSnippet({
-  required String body,
-  int maxLength = 60,
-}) {
+String formatNoteSnippet({required String body, int maxLength = 60}) {
   final clean = body.replaceAll('\n', ' ').trim();
   if (clean.isEmpty) return 'Tidak ada isi tambahan';
   if (clean.length <= maxLength) return clean;

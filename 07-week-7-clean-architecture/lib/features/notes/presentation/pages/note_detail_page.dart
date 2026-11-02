@@ -100,7 +100,9 @@ class _NoteDetailPageState extends ConsumerState<NoteDetailPage> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: const Text('Catatan berhasil dihapus dari database lokal.'),
+            content: const Text(
+              'Catatan berhasil dihapus dari database lokal.',
+            ),
             backgroundColor: Colors.orange.shade800,
             behavior: SnackBarBehavior.floating,
           ),
@@ -120,7 +122,10 @@ class _NoteDetailPageState extends ConsumerState<NoteDetailPage> {
         title: const Text('Detail & Edit Catatan'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.delete_outline_rounded, color: Colors.redAccent),
+            icon: const Icon(
+              Icons.delete_outline_rounded,
+              color: Colors.redAccent,
+            ),
             tooltip: 'Hapus Catatan',
             onPressed: _deleteNote,
           ),
@@ -141,12 +146,17 @@ class _NoteDetailPageState extends ConsumerState<NoteDetailPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.error_outline_rounded, size: 48, color: Colors.red.shade400),
+                Icon(
+                  Icons.error_outline_rounded,
+                  size: 48,
+                  color: Colors.red.shade400,
+                ),
                 const SizedBox(height: 12),
                 Text('Gagal memuat catatan: $e', textAlign: TextAlign.center),
                 const SizedBox(height: 16),
                 FilledButton(
-                  onPressed: () => ref.invalidate(noteDetailProvider(widget.id)),
+                  onPressed: () =>
+                      ref.invalidate(noteDetailProvider(widget.id)),
                   child: const Text('Coba Lagi'),
                 ),
               ],
@@ -176,7 +186,9 @@ class _NoteDetailPageState extends ConsumerState<NoteDetailPage> {
                     color: isDark ? const Color(0xFF1E293B) : Colors.white,
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
-                      color: isDark ? Colors.white.withAlpha(20) : Colors.grey.shade200,
+                      color: isDark
+                          ? Colors.white.withAlpha(20)
+                          : Colors.grey.shade200,
                     ),
                   ),
                   child: Column(
@@ -185,9 +197,13 @@ class _NoteDetailPageState extends ConsumerState<NoteDetailPage> {
                       Row(
                         children: [
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 4,
+                            ),
                             decoration: BoxDecoration(
-                              color: const Color(0xFF0F766E).withAlpha(isDark ? 50 : 25),
+                              color: const Color(0xFF0F766E)
+                                  .withAlpha(isDark ? 50 : 25),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Text(
@@ -201,17 +217,26 @@ class _NoteDetailPageState extends ConsumerState<NoteDetailPage> {
                           ),
                           const Spacer(),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 3,
+                            ),
                             decoration: BoxDecoration(
-                              color: note.dirty ? Colors.amber.shade100 : Colors.teal.shade50,
+                              color: note.dirty
+                                  ? Colors.amber.shade100
+                                  : Colors.teal.shade50,
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Text(
-                              note.dirty ? 'Status: Lokal (Dirty Flag)' : 'Status: SQLite Persisted',
+                              note.dirty
+                                  ? 'Status: Lokal (Dirty Flag)'
+                                  : 'Status: SQLite Persisted',
                               style: TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.bold,
-                                color: note.dirty ? Colors.amber.shade900 : Colors.teal.shade800,
+                                color: note.dirty
+                                    ? Colors.amber.shade900
+                                    : Colors.teal.shade800,
                               ),
                             ),
                           ),
@@ -220,11 +245,18 @@ class _NoteDetailPageState extends ConsumerState<NoteDetailPage> {
                       const SizedBox(height: 10),
                       Row(
                         children: [
-                          Icon(Icons.schedule_rounded, size: 14, color: Colors.grey.shade600),
+                          Icon(
+                            Icons.schedule_rounded,
+                            size: 14,
+                            color: Colors.grey.shade600,
+                          ),
                           const SizedBox(width: 6),
                           Text(
                             'Terakhir Disunting: ${formatDisplayDate(note.updatedAt)}',
-                            style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey.shade600,
+                            ),
                           ),
                         ],
                       ),
@@ -239,11 +271,16 @@ class _NoteDetailPageState extends ConsumerState<NoteDetailPage> {
                   decoration: InputDecoration(
                     labelText: 'Judul Catatan',
                     prefixIcon: const Icon(Icons.title_rounded),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
                     filled: true,
                     fillColor: isDark ? const Color(0xFF1E293B) : Colors.white,
                   ),
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 16),
 
@@ -254,7 +291,9 @@ class _NoteDetailPageState extends ConsumerState<NoteDetailPage> {
                     labelText: 'Isi Catatan',
                     hintText: 'Tuliskan detail catatan di sini...',
                     alignLabelWithHint: true,
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
                     filled: true,
                     fillColor: isDark ? const Color(0xFF1E293B) : Colors.white,
                   ),
@@ -267,11 +306,16 @@ class _NoteDetailPageState extends ConsumerState<NoteDetailPage> {
                   style: FilledButton.styleFrom(
                     backgroundColor: const Color(0xFF0F766E),
                     padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
                   ),
                   onPressed: _saveNote,
                   icon: const Icon(Icons.save_rounded),
-                  label: const Text('Simpan Perubahan via UseCase', style: TextStyle(fontSize: 15)),
+                  label: const Text(
+                    'Simpan Perubahan via UseCase',
+                    style: TextStyle(fontSize: 15),
+                  ),
                 ),
               ],
             ),

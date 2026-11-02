@@ -59,12 +59,15 @@ class FakeNoteRepository implements NoteRepository {
 
 void main() {
   group('NoteModel Data Layer Tests', () {
-    test('fromMap aman terhadap field yang hilang dan mengonversi ke default', () {
-      final model = NoteModel.fromMap({'title': 'Belanja'});
-      expect(model.title, 'Belanja');
-      expect(model.body, '');
-      expect(model.dirty, isFalse);
-    });
+    test(
+      'fromMap aman terhadap field yang hilang dan mengonversi ke default',
+      () {
+        final model = NoteModel.fromMap({'title': 'Belanja'});
+        expect(model.title, 'Belanja');
+        expect(model.body, '');
+        expect(model.dirty, isFalse);
+      },
+    );
 
     test('flag dirty bertahan pada serialisasi model', () {
       final model = NoteModel(
@@ -76,19 +79,22 @@ void main() {
       expect(restored.dirty, isTrue);
     });
 
-    test('toEntity menghasilkan domain entity murni tanpa method serialisasi', () {
-      final model = NoteModel(
-        id: 1,
-        title: 'Entity Test',
-        body: 'Body Test',
-        updatedAt: DateTime(2026, 10, 12),
-        dirty: true,
-      );
-      final entity = model.toEntity();
-      expect(entity, isA<Note>());
-      expect(entity.id, 1);
-      expect(entity.title, 'Entity Test');
-    });
+    test(
+      'toEntity menghasilkan domain entity murni tanpa method serialisasi',
+      () {
+        final model = NoteModel(
+          id: 1,
+          title: 'Entity Test',
+          body: 'Body Test',
+          updatedAt: DateTime(2026, 10, 12),
+          dirty: true,
+        );
+        final entity = model.toEntity();
+        expect(entity, isA<Note>());
+        expect(entity.id, 1);
+        expect(entity.title, 'Entity Test');
+      },
+    );
   });
 
   group('Presentation Provider DI Wiring Tests', () {
@@ -96,9 +102,9 @@ void main() {
       final container = ProviderContainer(
         overrides: [
           noteRepositoryProvider.overrideWithValue(
-            FakeNoteRepository(items: [
-              Note(title: 'Tes Clean Arch', updatedAt: DateTime.now()),
-            ]),
+            FakeNoteRepository(
+              items: [Note(title: 'Tes Clean Arch', updatedAt: DateTime.now())],
+            ),
           ),
         ],
       );
@@ -108,19 +114,22 @@ void main() {
       expect(notes.first.title, 'Tes Clean Arch');
     });
 
-    test('provider error menangkap Failure dan melempar Exception ramah UI', () async {
-      final container = ProviderContainer(
-        overrides: [
-          noteRepositoryProvider.overrideWithValue(
-            FakeNoteRepository(throwError: true),
-          ),
-        ],
-      );
-      addTearDown(container.dispose);
-      await expectLater(
-        container.read(notesProvider.future),
-        throwsA(isA<Exception>()),
-      );
-    });
+    test(
+      'provider error menangkap Failure dan melempar Exception ramah UI',
+      () async {
+        final container = ProviderContainer(
+          overrides: [
+            noteRepositoryProvider.overrideWithValue(
+              FakeNoteRepository(throwError: true),
+            ),
+          ],
+        );
+        addTearDown(container.dispose);
+        await expectLater(
+          container.read(notesProvider.future),
+          throwsA(isA<Exception>()),
+        );
+      },
+    );
   });
 }
