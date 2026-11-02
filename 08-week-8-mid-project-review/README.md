@@ -16,10 +16,10 @@
 - Review AI: 2 diterima (trim + test), 1 ditolak (use case pass-through), 2 ditunda.
 - Batasan: PR belum dibuka otomatis karena `gh` CLI tidak tersedia; semua branch sudah dipush dan siap dibuat PR via web GitHub.
 
-![CI Green](screenshots/ci-green.png)  
-![PR Review](screenshots/pr-2-review.png)  
-![PR Merged](screenshots/pr-2-merged.png)  
-![Hasil Analyze & Test](screenshots/hasil-analyze-test-week7.png)  
+![CI Green — Hasil CI workflow (`flutter analyze`, `dart format`, `flutter test`) hijau](screenshots/ci-green.png)  
+![PR Review — Halaman PR #2 (`fix/2-update-note-trim`) dengan 3 komentar simulasi siap di-approve](screenshots/pr-2-review.png)  
+![PR Merged — Bukti PR #3 (`chore/3-ci`) sudah di-merge ke `develop`](screenshots/pr-2-merged.png)  
+![Hasil Analyze & Test — `flutter analyze` bersih (`No issues found!`) dan `flutter test` 19 lulus termasuk `update_note_test.dart`](screenshots/hasil-analyze-test-week7.png)  
 
 ---
 
@@ -100,19 +100,30 @@ Bukti AI: commit `27ae786` (perbaikan), `27ae9dd` (CI), `37972ff` (laporan).
 
 ---
 
-## Refleksi
+## Langkah Praktikum
 
-1. **Approve bertanggung jawab** berarti reviewer menjalankan kode, memeriksa jalur error, dan memahami dampak arsitektur — bukan sekadar melihat CI hijau (risiko LGTM: bug lolos, utang teknis).
-2. **Request changes** wajib saat ada bug kebenaran atau pelanggaran dependency; cukup saran untuk peningkatan keterbacaan.
-3. **Ditolak AI**: bungkus `getNoteById`/`countDirty` menjadi use case — operasi pass-through tanpa validasi/orkestrasi; menambah boilerplate tanpa nilai domain.
-4. **Perbaikan konkret**: `UpdateNote` sekarang `trim` judul/isi; dampak konsistensi data dan perilaku edit sejalan dengan `AddNote`, dibuktikan 3 test baru.
+1. **Baseline (Fase 0):** jalankan `flutter pub get`, `flutter analyze`, `dart format`, `flutter test`. Simpan bukti (`docs/evidence/` sebelum disederhanakan).
+2. **Format (Fase 0):** terapkan `dart format` (19 file diubah), commit `style(week-7): ...`.
+3. **Git Flow (Fase 1):** buat branch `develop`, `chore/1-track-project-files`, edit `.gitignore`, commit file konfigurasi.
+4. **Perbaikan Fitur (Fase 2):** branch `fix/2-update-note-trim`, edit `update_note.dart` (`trim()` judul/isi), tambah `test/update_note_test.dart` (3 test), commit.
+5. **CI (Fase 3):** branch `chore/3-ci`, buat `.github/workflows/ci.yml`, commit.
+6. **Dokumentasi (Fase 4):** branch `docs/4-week-8-report`, susun `README.md`, `docs/review-checklist.md`, `docs/ai-review-vs-keputusan.md`, `docs/issue-pr-map.md`, dan `docs/codelab-reference.md`.
+7. **Verifikasi Akhir:** semua 19 test lulus, 3 grep sterilitas 0 hasil, CI siap, 4 PR siap dibuka via web.
 
 ---
 
-## Batasan & Langkah Manual
+## Refleksi
 
-- Issue/PR belum dibuat otomatis (`gh` CLI tidak tersedia). Salin judul/body dari commit `4e551c5`–`37972ff` ke GitHub.
-- Screenshot CI (`ci-green.png`) dan halaman PR (`pr-review.png`) belum tersedia; simpan setelah PR dibuka.
-- Dokumentasi lengkap sudah disederhanakan ke file README ini.
-- Review sejawat belum dilakukan; dokumentasi ini mencatat simulasi mandiri secara transparan.
-- Nama package `week5_offline_notes` belum diubah agar aplikasi tetap identik akhir Week 7.
+1. **Approve bertanggung jawab vs LGTM buta.**  
+Approve yang bertanggung jawab berarti reviewer menjalankan kode (`flutter test`), membaca alur eksekusi (`notes_page.dart`, `update_note.dart`), memeriksa jalur error (`AsyncValue.error`), dan memahami dampak arsitektur (`feature-first` dependency rule). Ini berbeda dari LGTM buta yang hanya melihat output CI hijau (`No issues found!`) tanpa membaca konteks perubahan. Risiko LGTM buta sangat nyata dalam proyek ini: misalnya, jika `UpdateNote` tidak melakukan `trim`, data akan tersimpan dengan spasi tersembunyi yang merusak konsistensi pencarian (`_searchQuery.trim().toLowerCase()` di `notes_page.dart`) dan tampilan. Bug semacam ini tidak akan tertangkap oleh `flutter analyze`, hanya oleh test (`update_note_test.dart`) dan review manual. Oleh karena itu, simulasi review mandiri tetap dilakukan meskipun tanpa reviewer eksternal.
+
+2. **Kapan `request changes` vs saran.**  
+`Request changes` wajib saat ada pelanggaran aturan emas (`Golden Dependency Rule`) — misalnya `domain` mengimpor `package:flutter` atau `package:sqflite` — atau saat ada bug kebenaran (`UpdateNote` tidak `trim`) yang membuat fitur tidak sesuai spesifikasi. Saran dipakai untuk peningkatan keterbacaan (`import` ganda) atau optimasi (`use case` tambahan untuk operasi pass-through) yang tidak menghalangi merge. Dalam simulasi ini, temuan `trim` masuk kategori `request changes` karena mengubah perilaku domain; sedangkan `import` ganda cukup saran karena tidak mengubah perilaku.
+
+3. **Temuan AI yang ditolak atau disederhanakan.**  
+Saya menolak saran AI untuk membungkus `getNoteById` dan `countDirty` menjadi `use case` terpisah. Alasannya: kedua operasi hanya meneruskan panggilan `NoteRepository` (`fetchNotes` dan `countDirty`) tanpa validasi, tanpa transformasi data (`toEntity`/`toMap`), maupun orkestrasi multi-sumber. Menambah use case satu baris (`return repo.getNoteById(id);`) akan meningkatkan jumlah file per fitur dari 6 menjadi 8 (`entity`, `model`, `interface`, `impl`, `use case`, `provider`, `page`, `test`) tanpa meningkatkan kejelasan bisnis. Ini konsisten dengan refleksi Minggu 7 (§8.2) yang menyatakan: *"Use case benar-benar dibutuhkan ketika terdapat logika bisnis, validasi, atau orkestrasi; repository langsung ke Notifier sudah cukup untuk operasi pass-through."* Dengan alasan ini, temuan AI #4 ditolak secara teknis.
+
+4. **Perbaikan konkret setelah review.**  
+`UpdateNote` sekarang menerapkan `trim()` pada judul (`title.trim()`) dan isi (`body.trim()`) sebelum menyimpan ke `NoteRepositoryImpl`. Dampaknya tiga lapis: (a) konsistensi data — semua catatan tersimpan tanpa spasi tersembunyi; (b) konsistensi UI — pencarian (`_searchQuery.trim().toLowerCase()` di `notes_page.dart`) tidak lagi terganggu oleh spasi; (c) konsistensi perilaku — operasi edit (`UpdateNote`) sejalan dengan operasi tambah (`AddNote`) yang sudah melakukan `trim`. Perbaikan ini dibuktikan oleh `test/update_note_test.dart` (validasi kosong/spasi, trim, dan penanganan failure) serta 19 test lainnya tetap hijau.
+
+
