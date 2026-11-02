@@ -47,7 +47,11 @@ class _NotesPageState extends ConsumerState<NotesPage>
                 color: const Color(0xFF0F766E).withAlpha(30),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: const Icon(Icons.add_task_rounded, color: Color(0xFF0F766E), size: 24),
+              child: const Icon(
+                Icons.add_task_rounded,
+                color: Color(0xFF0F766E),
+                size: 24,
+              ),
             ),
             const SizedBox(width: 12),
             const Text(
@@ -73,7 +77,9 @@ class _NotesPageState extends ConsumerState<NotesPage>
                   labelText: 'Judul Catatan',
                   hintText: 'Misal: Review Bab 7 Clean Architecture',
                   prefixIcon: const Icon(Icons.title_rounded),
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                   filled: true,
                 ),
               ),
@@ -84,7 +90,9 @@ class _NotesPageState extends ConsumerState<NotesPage>
                   labelText: 'Isi Catatan',
                   hintText: 'Tuliskan catatan atau tugas penting...',
                   prefixIcon: const Icon(Icons.notes_rounded),
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                   filled: true,
                   alignLabelWithHint: true,
                 ),
@@ -101,7 +109,9 @@ class _NotesPageState extends ConsumerState<NotesPage>
           FilledButton.icon(
             style: FilledButton.styleFrom(
               backgroundColor: const Color(0xFF0F766E),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
             ),
             icon: const Icon(Icons.save_rounded, size: 18),
             label: const Text('Simpan via UseCase'),
@@ -129,7 +139,9 @@ class _NotesPageState extends ConsumerState<NotesPage>
                       ),
                       backgroundColor: Colors.red.shade700,
                       behavior: SnackBarBehavior.floating,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
                   );
                 }
@@ -144,12 +156,16 @@ class _NotesPageState extends ConsumerState<NotesPage>
                         children: [
                           Icon(Icons.check_circle_outline, color: Colors.white),
                           SizedBox(width: 8),
-                          Text('Catatan tervalidasi & tersimpan via Clean Architecture.'),
+                          Text(
+                            'Catatan tervalidasi & tersimpan via Clean Architecture.',
+                          ),
                         ],
                       ),
                       backgroundColor: const Color(0xFF0F766E),
                       behavior: SnackBarBehavior.floating,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
                   );
                 }
@@ -180,10 +196,14 @@ class _NotesPageState extends ConsumerState<NotesPage>
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: const Text('Catatan berhasil dihapus dari database lokal.'),
+            content: const Text(
+              'Catatan berhasil dihapus dari database lokal.',
+            ),
             backgroundColor: Colors.orange.shade800,
             behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
         );
       }
@@ -266,7 +286,8 @@ class _NotesPageState extends ConsumerState<NotesPage>
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF0F766E).withAlpha(isDark ? 30 : 60),
+                      color: const Color(0xFF0F766E)
+                          .withAlpha(isDark ? 30 : 60),
                       blurRadius: 10,
                       offset: const Offset(0, 4),
                     ),
@@ -278,7 +299,10 @@ class _NotesPageState extends ConsumerState<NotesPage>
                     Row(
                       children: [
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 4,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.white.withAlpha(40),
                             borderRadius: BorderRadius.circular(20),
@@ -286,7 +310,11 @@ class _NotesPageState extends ConsumerState<NotesPage>
                           child: const Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(Icons.verified_rounded, size: 14, color: Colors.amberAccent),
+                              Icon(
+                                Icons.verified_rounded,
+                                size: 14,
+                                color: Colors.amberAccent,
+                              ),
                               SizedBox(width: 6),
                               Text(
                                 'CLEAN ARCHITECTURE ACTIVE',
@@ -303,9 +331,14 @@ class _NotesPageState extends ConsumerState<NotesPage>
                         const Spacer(),
                         dirtyAsync.when(
                           data: (count) => Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 3,
+                            ),
                             decoration: BoxDecoration(
-                              color: count > 0 ? Colors.amber.shade400 : Colors.teal.shade200,
+                              color: count > 0
+                                  ? Colors.amber.shade400
+                                  : Colors.teal.shade200,
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Text(
@@ -349,10 +382,14 @@ class _NotesPageState extends ConsumerState<NotesPage>
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: TextField(
                   controller: _searchController,
-                  onChanged: (val) => setState(() => _searchQuery = val.trim().toLowerCase()),
+                  onChanged: (val) =>
+                      setState(() => _searchQuery = val.trim().toLowerCase()),
                   decoration: InputDecoration(
                     hintText: 'Cari catatan berdasarkan judul atau isi...',
-                    hintStyle: TextStyle(fontSize: 13, color: Colors.grey.shade500),
+                    hintStyle: TextStyle(
+                      fontSize: 13,
+                      color: Colors.grey.shade500,
+                    ),
                     prefixIcon: const Icon(Icons.search_rounded, size: 20),
                     suffixIcon: _searchQuery.isNotEmpty
                         ? IconButton(
@@ -367,7 +404,9 @@ class _NotesPageState extends ConsumerState<NotesPage>
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(14),
                       borderSide: BorderSide(
-                        color: isDark ? Colors.white.withAlpha(30) : Colors.grey.shade300,
+                        color: isDark
+                            ? Colors.white.withAlpha(30)
+                            : Colors.grey.shade300,
                       ),
                     ),
                     filled: true,
@@ -389,9 +428,16 @@ class _NotesPageState extends ConsumerState<NotesPage>
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.error_outline_rounded, size: 48, color: Colors.red.shade400),
+                          Icon(
+                            Icons.error_outline_rounded,
+                            size: 48,
+                            color: Colors.red.shade400,
+                          ),
                           const SizedBox(height: 12),
-                          Text('Gagal memuat catatan: $e', textAlign: TextAlign.center),
+                          Text(
+                            'Gagal memuat catatan: $e',
+                            textAlign: TextAlign.center,
+                          ),
                           const SizedBox(height: 16),
                           FilledButton.icon(
                             style: FilledButton.styleFrom(
@@ -409,10 +455,14 @@ class _NotesPageState extends ConsumerState<NotesPage>
                     final filteredNotes = _searchQuery.isEmpty
                         ? notes
                         : notes
-                            .where((n) =>
-                                n.title.toLowerCase().contains(_searchQuery) ||
-                                n.body.toLowerCase().contains(_searchQuery))
-                            .toList();
+                              .where(
+                                (n) =>
+                                    n.title.toLowerCase().contains(
+                                      _searchQuery,
+                                    ) ||
+                                    n.body.toLowerCase().contains(_searchQuery),
+                              )
+                              .toList();
 
                     if (filteredNotes.isEmpty) {
                       return Center(
@@ -424,7 +474,8 @@ class _NotesPageState extends ConsumerState<NotesPage>
                               Container(
                                 padding: const EdgeInsets.all(20),
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFF0F766E).withAlpha(isDark ? 40 : 20),
+                                  color: const Color(0xFF0F766E)
+                                      .withAlpha(isDark ? 40 : 20),
                                   shape: BoxShape.circle,
                                 ),
                                 child: const Icon(
@@ -438,7 +489,10 @@ class _NotesPageState extends ConsumerState<NotesPage>
                                 _searchQuery.isEmpty
                                     ? 'Belum ada catatan bisnis.'
                                     : 'Tidak ada catatan yang cocok dengan pencarian.',
-                                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                               const SizedBox(height: 6),
                               Text(
@@ -446,7 +500,10 @@ class _NotesPageState extends ConsumerState<NotesPage>
                                     ? 'Tekan tombol "Tambah Catatan" untuk membuat entity baru.'
                                     : 'Coba kata kunci pencarian yang lain.',
                                 textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey.shade600,
+                                ),
                               ),
                               if (_searchQuery.isEmpty) ...[
                                 const SizedBox(height: 16),
@@ -506,13 +563,15 @@ class _NotesPageState extends ConsumerState<NotesPage>
                       children: [
                         Row(
                           children: [
-                            const Icon(Icons.layers_rounded, color: Color(0xFF0F766E)),
+                            const Icon(
+                              Icons.layers_rounded,
+                              color: Color(0xFF0F766E),
+                            ),
                             const SizedBox(width: 8),
                             Text(
                               'Visualisasi 3 Layer Clean Architecture',
-                              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              style: Theme.of(context).textTheme.titleMedium
+                                  ?.copyWith(fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
@@ -522,13 +581,16 @@ class _NotesPageState extends ConsumerState<NotesPage>
                           subtitle: 'NotesPage, NoteDetailPage, SettingsPage, Riverpod Providers',
                           color: Colors.blue.shade700,
                           bg: Colors.blue.shade50,
-                          detail:
-                              'Membaca state melalui UseCase/Notifier. Steril dari SQL, Dio, maupun JSON decoding.',
+                          detail: 'Membaca state melalui UseCase/Notifier. Steril dari SQL, Dio, maupun JSON decoding.',
                         ),
                         const Center(
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: 4),
-                            child: Icon(Icons.arrow_downward_rounded, size: 18, color: Colors.grey),
+                            child: Icon(
+                              Icons.arrow_downward_rounded,
+                              size: 18,
+                              color: Colors.grey,
+                            ),
                           ),
                         ),
                         _buildLayerBox(
@@ -536,13 +598,16 @@ class _NotesPageState extends ConsumerState<NotesPage>
                           subtitle: 'Entity Note, Kontrak NoteRepository, UseCases (GetNotes, AddNote)',
                           color: const Color(0xFF0F766E),
                           bg: const Color(0xFF0F766E).withAlpha(25),
-                          detail:
-                              'Pure Dart tanpa framework Flutter/package luar. Semua aturan validasi bisnis tinggal di sini.',
+                          detail: 'Pure Dart tanpa framework Flutter/package luar. Semua aturan validasi bisnis tinggal di sini.',
                         ),
                         const Center(
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: 4),
-                            child: Icon(Icons.arrow_upward_rounded, size: 18, color: Colors.grey),
+                            child: Icon(
+                              Icons.arrow_upward_rounded,
+                              size: 18,
+                              color: Colors.grey,
+                            ),
                           ),
                         ),
                         _buildLayerBox(
@@ -550,8 +615,7 @@ class _NotesPageState extends ConsumerState<NotesPage>
                           subtitle: 'NoteModel (toMap/fromMap), NoteRepositoryImpl, SQLite DB',
                           color: Colors.orange.shade800,
                           bg: Colors.orange.shade50,
-                          detail:
-                              'Mengimplementasikan kontrak domain. Menghubungkan entity dengan tabel SQLite offline.',
+                          detail: 'Mengimplementasikan kontrak domain. Menghubungkan entity dengan tabel SQLite offline.',
                         ),
                       ],
                     ),
@@ -568,19 +632,24 @@ class _NotesPageState extends ConsumerState<NotesPage>
                       children: [
                         Row(
                           children: [
-                            const Icon(Icons.compare_arrows_rounded, color: Colors.deepPurple),
+                            const Icon(
+                              Icons.compare_arrows_rounded,
+                              color: Colors.deepPurple,
+                            ),
                             const SizedBox(width: 8),
                             Text(
                               'Perbedaan Entity vs Model',
-                              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              style: Theme.of(context).textTheme.titleMedium
+                                  ?.copyWith(fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
                         const SizedBox(height: 12),
                         Table(
-                          border: TableBorder.all(color: Colors.grey.shade300, borderRadius: BorderRadius.circular(8)),
+                          border: TableBorder.all(
+                            color: Colors.grey.shade300,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                           columnWidths: const {
                             0: FlexColumnWidth(1.2),
                             1: FlexColumnWidth(2),
@@ -588,41 +657,115 @@ class _NotesPageState extends ConsumerState<NotesPage>
                           },
                           children: const [
                             TableRow(
-                              decoration: BoxDecoration(color: Color(0xFFF1F5F9)),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFF1F5F9),
+                              ),
                               children: [
                                 Padding(
                                   padding: EdgeInsets.all(8),
-                                  child: Text('Kriteria', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11)),
+                                  child: Text(
+                                    'Kriteria',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 11,
+                                    ),
+                                  ),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(8),
-                                  child: Text('Domain Entity', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11)),
+                                  child: Text(
+                                    'Domain Entity',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 11,
+                                    ),
+                                  ),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(8),
-                                  child: Text('Data Model', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11)),
+                                  child: Text(
+                                    'Data Model',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 11,
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
                             TableRow(
                               children: [
-                                Padding(padding: EdgeInsets.all(8), child: Text('Lokasi', style: TextStyle(fontSize: 11))),
-                                Padding(padding: EdgeInsets.all(8), child: Text('domain/entities', style: TextStyle(fontSize: 11))),
-                                Padding(padding: EdgeInsets.all(8), child: Text('data/models', style: TextStyle(fontSize: 11))),
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text(
+                                    'Lokasi',
+                                    style: TextStyle(fontSize: 11),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text(
+                                    'domain/entities',
+                                    style: TextStyle(fontSize: 11),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text(
+                                    'data/models',
+                                    style: TextStyle(fontSize: 11),
+                                  ),
+                                ),
                               ],
                             ),
                             TableRow(
                               children: [
-                                Padding(padding: EdgeInsets.all(8), child: Text('Serialisasi', style: TextStyle(fontSize: 11))),
-                                Padding(padding: EdgeInsets.all(8), child: Text('Bebas toMap/fromMap', style: TextStyle(fontSize: 11))),
-                                Padding(padding: EdgeInsets.all(8), child: Text('toMap, fromMap, toEntity', style: TextStyle(fontSize: 11))),
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text(
+                                    'Serialisasi',
+                                    style: TextStyle(fontSize: 11),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text(
+                                    'Bebas toMap/fromMap',
+                                    style: TextStyle(fontSize: 11),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text(
+                                    'toMap, fromMap, toEntity',
+                                    style: TextStyle(fontSize: 11),
+                                  ),
+                                ),
                               ],
                             ),
                             TableRow(
                               children: [
-                                Padding(padding: EdgeInsets.all(8), child: Text('Peran', style: TextStyle(fontSize: 11))),
-                                Padding(padding: EdgeInsets.all(8), child: Text('Objek aturan bisnis', style: TextStyle(fontSize: 11))),
-                                Padding(padding: EdgeInsets.all(8), child: Text('Representasi data storage', style: TextStyle(fontSize: 11))),
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text(
+                                    'Peran',
+                                    style: TextStyle(fontSize: 11),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text(
+                                    'Objek aturan bisnis',
+                                    style: TextStyle(fontSize: 11),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text(
+                                    'Representasi data storage',
+                                    style: TextStyle(fontSize: 11),
+                                  ),
+                                ),
                               ],
                             ),
                           ],
@@ -642,22 +785,44 @@ class _NotesPageState extends ConsumerState<NotesPage>
                       children: [
                         Row(
                           children: [
-                            const Icon(Icons.shield_outlined, color: Color(0xFF0F766E)),
+                            const Icon(
+                              Icons.shield_outlined,
+                              color: Color(0xFF0F766E),
+                            ),
                             const SizedBox(width: 8),
                             Text(
                               'Penerapan 5 Prinsip SOLID',
-                              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              style: Theme.of(context).textTheme.titleMedium
+                                  ?.copyWith(fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
                         const SizedBox(height: 12),
-                        _buildSolidItem('S', 'Single Responsibility', 'Setiap kelas hanya punya satu alasan berubah: AddNote hanya memvalidasi & menambah, NoteModel hanya serialisasi.'),
-                        _buildSolidItem('O', 'Open/Closed', 'Fitur baru dapat ditambahkan via UseCase baru tanpa mengubah repository interface yang telah berjalan.'),
-                        _buildSolidItem('L', 'Liskov Substitution', 'FakeNoteRepository dapat disuntikkan menggantikan NoteRepositoryImpl tanpa merusak logika klien.'),
-                        _buildSolidItem('I', 'Interface Segregation', 'Kontrak dipisahkan per domain (NoteRepository terpisah dari SettingsRepository).'),
-                        _buildSolidItem('D', 'Dependency Inversion', 'Presentation dan UseCase bergantung pada abstraksi interface NoteRepository, bukan kelas konkret NoteRepositoryImpl.'),
+                        _buildSolidItem(
+                          'S',
+                          'Single Responsibility',
+                          'Setiap kelas hanya punya satu alasan berubah: AddNote hanya memvalidasi & menambah, NoteModel hanya serialisasi.',
+                        ),
+                        _buildSolidItem(
+                          'O',
+                          'Open/Closed',
+                          'Fitur baru dapat ditambahkan via UseCase baru tanpa mengubah repository interface yang telah berjalan.',
+                        ),
+                        _buildSolidItem(
+                          'L',
+                          'Liskov Substitution',
+                          'FakeNoteRepository dapat disuntikkan menggantikan NoteRepositoryImpl tanpa merusak logika klien.',
+                        ),
+                        _buildSolidItem(
+                          'I',
+                          'Interface Segregation',
+                          'Kontrak dipisahkan per domain (NoteRepository terpisah dari SettingsRepository).',
+                        ),
+                        _buildSolidItem(
+                          'D',
+                          'Dependency Inversion',
+                          'Presentation dan UseCase bergantung pada abstraksi interface NoteRepository, bukan kelas konkret NoteRepositoryImpl.',
+                        ),
                       ],
                     ),
                   ),
@@ -693,11 +858,24 @@ class _NotesPageState extends ConsumerState<NotesPage>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: TextStyle(fontWeight: FontWeight.bold, color: color, fontSize: 13)),
+          Text(
+            title,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: color,
+              fontSize: 13,
+            ),
+          ),
           const SizedBox(height: 2),
-          Text(subtitle, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 11)),
+          Text(
+            subtitle,
+            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 11),
+          ),
           const SizedBox(height: 4),
-          Text(detail, style: TextStyle(color: Colors.grey.shade700, fontSize: 11)),
+          Text(
+            detail,
+            style: TextStyle(color: Colors.grey.shade700, fontSize: 11),
+          ),
         ],
       ),
     );
@@ -732,7 +910,10 @@ class _NotesPageState extends ConsumerState<NotesPage>
               text: TextSpan(
                 style: const TextStyle(color: Colors.black87, fontSize: 12),
                 children: [
-                  TextSpan(text: '$title: ', style: const TextStyle(fontWeight: FontWeight.bold)),
+                  TextSpan(
+                    text: '$title: ',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   TextSpan(text: desc),
                 ],
               ),

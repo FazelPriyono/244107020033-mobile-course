@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/format.dart';
 import '../../domain/entities/note.dart';
 
@@ -93,7 +94,9 @@ class NoteTile extends StatelessWidget {
                               decoration: BoxDecoration(
                                 color: Colors.amber.shade100,
                                 borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: Colors.amber.shade400),
+                                border: Border.all(
+                                  color: Colors.amber.shade400,
+                                ),
                               ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
@@ -154,7 +157,9 @@ class NoteTile extends StatelessWidget {
                       Text(
                         snippet,
                         style: TextStyle(
-                          color: isDark ? Colors.grey.shade300 : Colors.grey.shade700,
+                          color: isDark
+                              ? Colors.grey.shade300
+                              : Colors.grey.shade700,
                           fontSize: 13,
                           height: 1.3,
                         ),

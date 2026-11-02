@@ -72,7 +72,9 @@ class CleanNotesApp extends ConsumerWidget {
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: const Color(0xFF0F766E),
           foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
           elevation: 3,
         ),
       ),
@@ -106,7 +108,9 @@ class CleanNotesApp extends ConsumerWidget {
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: const Color(0xFF14B8A6),
           foregroundColor: Colors.black87,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
           elevation: 3,
         ),
       ),

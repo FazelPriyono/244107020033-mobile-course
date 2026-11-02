@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../..//data/datasources/notes_database.dart';
 import '../../data/repositories/note_repository_impl.dart';
 import '../../domain/entities/note.dart';
@@ -48,8 +49,7 @@ final dirtyCountProvider = FutureProvider<int>((ref) async {
   return result.count;
 });
 
-final noteDetailProvider =
-    FutureProvider.family<Note?, int>((ref, id) async {
+final noteDetailProvider = FutureProvider.family<Note?, int>((ref, id) async {
   final repo = ref.watch(noteRepositoryProvider);
   final result = await repo.getNoteById(id);
   if (result.failure != null) {

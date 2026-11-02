@@ -16,9 +16,6 @@ class AddNote {
         failure: const ValidationFailure('Judul catatan tidak boleh kosong'),
       ));
     }
-    return _repository.addNote(
-      title: title.trim(),
-      body: body.trim(),
-    );
+    return _repository.addNote(title: title.trim(), body: body.trim());
   }
 }
