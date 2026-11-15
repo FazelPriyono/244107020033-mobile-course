@@ -42,15 +42,11 @@ class _AiChatPageState extends ConsumerState<AiChatPage> {
     _scrollToBottom();
   }
 
-  void _showApiKeyDialog() {
-    final apiKeyController = TextEditingController();
+  Future<void> _showApiKeyDialog() async {
     final repo = ref.read(aiRepositoryProvider);
-
-    repo.getApiKey().then((val) {
-      if (val != null) {
-        apiKeyController.text = val;
-      }
-    });
+    final savedKey = await repo.getApiKey();
+    final apiKeyController = TextEditingController(text: savedKey ?? '');
+    if (!mounted) return;
 
     showDialog(
       context: context,

@@ -15,12 +15,11 @@
 
 | Screenshot | Keterangan |
 | :---: | :--- |
-| ![Daftar Catatan](screenshots/note.png) | **1. Halaman Utama Catatan & Akses AI Assistant**<br>Menampilkan tombol akses cepat AI Note Assistant pada bilah atas (AppBar) di samping fitur pencarian dan sinkronisasi. |
-| ![Tambah Catatan](screenshots/tambah.png) | **2. Dialog Tambah Catatan Baru**<br>Pengguna dapat menyimpan catatan atau ringkasan yang dihasilkan dari percakapan bersama asisten cerdas ke dalam SQLite. |
-| ![Edit Catatan](screenshots/edit.png) | **3. Detail & Edit Catatan**<br>Halaman detail catatan yang memungkinkan pengguna memperbarui isi catatan dengan bantuan asisten AI. |
-| ![Pengaturan](screenshots/setting.png) | **4. Pengaturan & Preferensi Aplikasi**<br>Pengaturan tema persisten serta navigasi pengelolaan keamanan perangkat mobile. |
-| ![Mode Gelap](screenshots/dark%20mode.png) | **5. Tampilan Tema Gelap (Dark Mode)**<br>Antarmuka aplikasi dan gelembung percakapan (chat bubble) dengan visibilitas optimal pada mode malam. |
-| ![Hasil Test & Analyze](screenshots/hasil-test-analyze.png) | **6. Hasil Pengujian & Analisis Statis**<br>Bukti eksekusi `flutter analyze` bersih (No issues found) dan seluruh 33 test lulus tanpa kegagalan. |
+| ![Tampilan Chat](screenshots/tampilan-chat.png) | **1. Tampilan Awal AI Note Assistant**<br>Antarmuka percakapan dengan pesan sambutan asisten, kolom input pesan, dan chip saran (*suggestion chips*) untuk mempermudah navigasi mobile. |
+| ![API Masuk](screenshots/api-masuk.png) | **2. Dialog Pengaturan API Key Terenkripsi**<br>Pengguna dapat memasukkan Google Gemini API Key secara mandiri. Kunci disimpan aman menggunakan `FlutterSecureStorage` dengan cadangan `SharedPreferences`. |
+| ![Interaksi Online](screenshots/interaksi-online.jpeg) | **3. Interaksi AI Mode Online (Google Gemini API)**<br>Bukti asisten cerdas berhasil terhubung secara online ke model Gemini, memberikan rekomendasi ide catatan dan produktivitas secara responsif. |
+| ![Fallback Offline](screenshots/fallback.png) | **4. Mekanisme Fallback Mode Offline**<br>Ketika terjadi kendala koneksi atau kuota, sistem beralih otomatis ke *offline fallback engine* lokal dengan pesan diagnostik transparan tanpa menghentikan aplikasi. |
+| ![Hasil Analyze & Test](screenshots/hasil-analyze.png) | **5. Hasil Pengujian & Analisis Statis**<br>Bukti eksekusi `flutter analyze` bersih (No issues found) dan seluruh 33 unit & widget test lulus (*All tests passed!*). |
 
 ---
 
