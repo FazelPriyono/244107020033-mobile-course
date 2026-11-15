@@ -52,3 +52,13 @@ build/
 !11-week-11-performance-optimization/.gitignore
 !11-week-11-performance-optimization/test/
 !11-week-11-performance-optimization/test/**
+
+# --- Week 12: keep project config, lockfile, test, dan integration test tracked ---
+!12-week-12-testing-quality-assurance/pubspec.yaml
+!12-week-12-testing-quality-assurance/pubspec.lock
+!12-week-12-testing-quality-assurance/analysis_options.yaml
+!12-week-12-testing-quality-assurance/.gitignore
+!12-week-12-testing-quality-assurance/test/
+!12-week-12-testing-quality-assurance/test/**
+!12-week-12-testing-quality-assurance/integration_test/
+!12-week-12-testing-quality-assurance/integration_test/**
