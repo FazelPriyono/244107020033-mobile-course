@@ -16,6 +16,8 @@ analysis_options.yaml
 # Flutter/Dart
 pubspec.lock
 pubspec.yaml
+.dart_tool/
+*/.dart_tool/
 
 
 */*.gitignore

@@ -11,9 +11,16 @@
 - Pemeriksaan sterilitas dependensi: 0 pelanggaran aturan dependensi domain.
 - Evaluasi saran AI: 2 diterima dan diimplementasikan, 1 ditolak berdasarkan pertimbangan arsitektur dan performa.
 
-![Daftar Catatan](screenshots/note.png)  
-![Tampilan Tambah Catatan](screenshots/tambah.png)  
-![Tampilan Pengaturan Tema](screenshots/setting.png)  
+## Dokumentasi Tangkapan Layar
+
+| Screenshot | Keterangan |
+| :---: | :--- |
+| ![Daftar Catatan](screenshots/note.png) | **1. Halaman Utama Catatan & Fitur Pencarian**<br>Menampilkan daftar catatan reaktif dengan bilah pencarian di bagian atas, tombol clear query, dan filter real-time berbasis Domain Use Case. |
+| ![Tambah Catatan](screenshots/tambah.png) | **2. Dialog Tambah Catatan Baru**<br>Form penambahan entitas catatan baru yang divalidasi oleh Domain Use Case sebelum disimpan ke penyimpanan lokal SQLite. |
+| ![Edit Catatan](screenshots/edit.png) | **3. Halaman Detail & Edit Catatan**<br>Halaman untuk memperbarui judul dan isi catatan dengan normalisasi teks (trim) secara otomatis. |
+| ![Pengaturan](screenshots/setting.png) | **4. Pengaturan Tema Aplikasi**<br>Halaman preferensi untuk mengubah tema aplikasi antara mode terang dan mode gelap secara persisten. |
+| ![Mode Gelap](screenshots/dark%20mode.png) | **5. Tampilan Tema Gelap (Dark Mode)**<br>Antarmuka aplikasi dalam mode gelap dengan palet warna kontras yang ramah mata. |
+| ![Hasil Test & Analyze](screenshots/hasil-test-analyze.png) | **6. Hasil Pengujian & Analisis Statis**<br>Bukti eksekusi `flutter analyze` bersih (No issues found) dan seluruh test lulus (All tests passed). |  
 
 ---
 
