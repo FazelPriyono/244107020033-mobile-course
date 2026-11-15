@@ -40,3 +40,7 @@ build/
 # --- Week 9: keep test tracked ---
 !09-week-9-ai-assisted-development/test/
 !09-week-9-ai-assisted-development/test/**
+
+# --- Week 10: keep test tracked ---
+!10-week-10-ai-feature-integration/test/
+!10-week-10-ai-feature-integration/test/**
