@@ -44,3 +44,11 @@ build/
 # --- Week 10: keep test tracked ---
 !10-week-10-ai-feature-integration/test/
 !10-week-10-ai-feature-integration/test/**
+
+# --- Week 11: keep project config, lockfile, dan test tracked ---
+!11-week-11-performance-optimization/pubspec.yaml
+!11-week-11-performance-optimization/pubspec.lock
+!11-week-11-performance-optimization/analysis_options.yaml
+!11-week-11-performance-optimization/.gitignore
+!11-week-11-performance-optimization/test/
+!11-week-11-performance-optimization/test/**
