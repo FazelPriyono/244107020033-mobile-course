@@ -32,3 +32,7 @@ pubspec.yaml
 !07-week-7-clean-architecture/.gitignore
 !07-week-7-clean-architecture/test/
 !07-week-7-clean-architecture/test/**
+
+# --- Week 9: keep test tracked ---
+!09-week-9-ai-assisted-development/test/
+!09-week-9-ai-assisted-development/test/**
